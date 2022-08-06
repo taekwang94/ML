@@ -34,14 +34,11 @@ class MainWindow(QMainWindow, form_class):
         self.tableDataset.setColumnCount(len(df.columns))
         self.tableDataset.setRowCount(len(df.index))
         self.tableDataset.setHorizontalHeaderLabels(df.keys())
-
-
         for i in range(0, len(df.index)):
             for j in range(0, len(df.columns)):
                 self.tableDataset.setItem(i, j, QTableWidgetItem(str(df.iloc[i, j])))
 
     def dropColumn(self):
-        #print(self.tableDataset.horizontalHeaderItem(self.tableDataset.currentColumn()).text())
         dropColumnName = str(self.tableDataset.horizontalHeaderItem(self.tableDataset.currentColumn()).text())
         self.df = self.df.drop([dropColumnName], axis=1)
         self.loadDatasetTable(self.df)
@@ -57,6 +54,6 @@ class MainWindow(QMainWindow, form_class):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.setWindowTitle('OpenCV Color Detector')
+    window.setWindowTitle('ML')
     window.show()
     sys.exit(app.exec_())
